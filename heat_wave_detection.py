@@ -17,14 +17,14 @@ def detect_heatwaves(data, temp_column='Data.Temperature.Max Temp', date_column=
     return data
 
 def send_sms(to, message):
-    account_sid = 'AC0aae47b947767a0b7b1fa4695f7f2e7d'
-    auth_token = '3912b0594c4650f11ad3a784db0a8f1f'
+    account_sid = 'Your Sid_Account_Number'
+    auth_token = 'Your Auth_Token_Number'
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
         body=message,
-        from_='+918337871255',
-        to='+918337871255')
+        from_='Your Verified Twilio Number',
+        to='Sending Number')
 
     print(f"Message sent to {to}: {message.sid}")
 
@@ -37,4 +37,4 @@ data = detect_heatwaves(data)
 for index, row in data.iterrows():
     if row['heatwave']:
         print(f"Heatwave detected on {row['Date.Full']} with temperature {row['Data.Temperature.Max Temp']} °C.")
-        # send_sms('+918337871255', f"Heatwave detected on {row['Date.Full']} with temperature {row['Data.Temperature.Max Temp']} °C.")
+        # send_sms('Sending Number', f"Heatwave detected on {row['Date.Full']} with temperature {row['Data.Temperature.Max Temp']} °C.")
